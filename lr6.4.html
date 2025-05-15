@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Перевірка унікальності елементів</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .result-block {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      font-size: 1.1em;
+    }
+    .unique {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .duplicate {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    .array-label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Перевірка унікальності елементів</h1>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    function areAllUnique(arr) {
+      const uniqueSet = new Set(arr);
+      return uniqueSet.size === arr.length;
+    }
+
+    const examples = [
+      { label: "Унікальний масив", array: [1, 2, 3, 4, 5] },
+      { label: "Масив з дублями", array: [1, 2, 3, 2, 4, 5] }
+    ];
+
+    const resultsDiv = document.getElementById('results');
+
+    examples.forEach(example => {
+      const isUnique = areAllUnique(example.array);
+
+      const resultDiv = document.createElement('div');
+      resultDiv.className = `result-block ${isUnique ? 'unique' : 'duplicate'}`;
+      resultDiv.innerHTML = `
+        <div class="array-label">${example.label}:</div>
+        <div>Масив: [${example.array.join(', ')}]</div>
+        <div>Результат: ${isUnique ? 'Усі елементи унікальні ✅' : 'Є дублікати ❌'}</div>
+      `;
+
+      resultsDiv.appendChild(resultDiv);
+    });
+  </script>
+</body>
+</html>

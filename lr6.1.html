@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Унікальні значення</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    ul#unique-list {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    ul#unique-list li {
+      background-color: #ffffff;
+      padding: 10px 15px;
+      margin: 8px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+
+    ul#unique-list li:hover {
+      background-color: #e0f7fa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Унікальні значення масиву</h1>
+  <ul id="unique-list"></ul>
+
+  <script>
+    function unique(arr) {
+      return Array.from(new Set(arr));
+    }
+
+    let values = [
+      "Hare", "Krishna", "Hare", "Krishna",
+      "Hare", "Krishna", "Hare", "Krishna", ":-O",
+      
+    ];
+
+    let uniqueValues = unique(values);
+    let list = document.getElementById("unique-list");
+
+    uniqueValues.forEach(value => {
+      let li = document.createElement("li");
+      li.textContent = value;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>

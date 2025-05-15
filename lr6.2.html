@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Фільтр анаграм</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background-color: #e0f7fa;
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease;
+    }
+    li:hover {
+      background-color: #b2ebf2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Унікальні слова без анаграм</h1>
+    <ul id="anagram-list"></ul>
+  </div>
+
+  <script>
+    function aclean(arr) {
+      let map = new Map();
+      for (let word of arr) {
+        let sorted = word.toLowerCase().split('').sort().join('');
+        map.set(sorted, word);
+      }
+      return Array.from(map.values());
+    }
+
+    let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+    let cleaned = aclean(arr);
+
+    let list = document.getElementById("anagram-list");
+    cleaned.forEach(word => {
+      let li = document.createElement("li");
+      li.textContent = word;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>

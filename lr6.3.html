@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Підрахунок входжень</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Кількість входжень чисел у масиві</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Число</th>
+          <th>Кількість</th>
+        </tr>
+      </thead>
+      <tbody id="result-body"></tbody>
+    </table>
+  </div>
+
+  <script>
+    function countOccurrences(arr) {
+      const map = new Map();
+      for (const num of arr) {
+        map.set(num, (map.get(num) || 0) + 1);
+      }
+      return map;
+    }
+
+    const numbers = [1, 2, 3, 4, 2, 1, 3, 5, 6, 5];
+    const result = countOccurrences(numbers);
+
+    const tbody = document.getElementById('result-body');
+    result.forEach((value, key) => {
+      const row = document.createElement('tr');
+      const cellKey = document.createElement('td');
+      const cellValue = document.createElement('td');
+
+      cellKey.textContent = key;
+      cellValue.textContent = value;
+
+      row.appendChild(cellKey);
+      row.appendChild(cellValue);
+      tbody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
